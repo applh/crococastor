@@ -88,12 +88,68 @@ td.sel {
 }
 
 .landscape {
+   position:relative;
    margin: 0 auto;
    width:960px;
    height:540px;
-   background: #dddddd url('plan-960.jpg') no-repeat center center scroll;
+   background: #dddddd url('pont-960.png') no-repeat center center scroll;
 }
-   </style>
+
+.castor {
+   position:absolute;
+   top:150px;
+   left:10px;
+   width:150px;
+   height:150px;
+   background: transparent url('castor-150.png') no-repeat center center scroll;
+   opacity:0.8;
+}
+.croco{
+   position:absolute;
+   bottom:-50px;
+   left:100px;
+   width:300px;
+   height:300px;
+   background: transparent url('croco-300.png') no-repeat center center scroll;
+   opacity:0.8;
+}
+.croco_miam {
+   background-color:#ee0000;
+}
+
+.pont{
+   position:absolute;
+   bottom:150px;
+   left:120px;
+   width:700px;
+   height:150px;
+   border:2px transparent solid;
+   opacity:0.8;
+}
+
+.piege {
+   float:left;
+   width:30px;
+   height:100px;
+   border:2px transparent solid;
+}
+
+.piege_actif {
+   border:2px red solid;
+}
+
+.card {
+   background:#ffffff;
+   border:2px green solid;
+   border-radius:10px;
+   padding:5px;
+   margin:5px;
+   float:left;
+   width:100px;
+   height:100px;
+ }
+
+    </style>
 
 
    <script src="jquery-min.js"></script>
@@ -125,6 +181,10 @@ BB.jinit=function(){
    $(".version").html(BB.version);
 
    $(".menu").tap(BB.act_menu);
+   $(".card").tap(BB.act_card);
+
+   BB.tab_piege=[];
+
 };
 
 $(BB.jinit);
@@ -152,7 +212,63 @@ BB.act_index=function(evt) {
 };
 
 BB.act_menu=function(evt) {
+   alert('CROCOCASTOR');
+   location.reload();
 };
+
+BB.act_card=function(evt) {
+   BB.step=Math.round(5*Math.random());
+   switch (BB.step) {
+      case 1:
+         BB.castor_move(1);
+         break;
+      case 2:
+         BB.castor_move(2);
+         break;
+      case 3:
+         BB.castor_move(3);
+         break;
+      default:
+         BB.pont_piege();
+         break;
+   }
+};
+
+BB.castor_alive=true;
+BB.castor_step=0;
+BB.castor_x=10;
+BB.castor_move=function(dx) {
+   if (!BB.castor_alive) return;
+      
+   if (BB.castor_step < 21) {
+      var next = BB.castor_step + dx;
+      var txt = BB.castor_step + " + " + dx + " = " + next;
+      BB.castor_step += dx;
+      BB.castor_x += 34*dx;
+      jQuery(".castor")
+         .animate({"left": BB.castor_x})
+         .html(txt);
+
+      var boom=false;
+      //if ($(".piege").eq(BB.castor_step+1).hasClass("piege_actif")) {
+      if (BB.tab_piege[""+BB.castor_step]) {
+         BB.castor_alive=false;
+
+         $(".castor")
+            .addClass("castor_dead")
+            .animate({top: 300})
+         ;
+         var miamX = $(".castor").css("left");
+         $(".croco").animate({left: miamX}).addClass("croco_miam");
+      }
+   }
+};
+BB.pont_piege=function() {
+   var new_piege=1+Math.floor(20*Math.random());
+   BB.tab_piege[""+new_piege]=true;
+   $(".piege").eq(new_piege-1).addClass("piege_actif");
+};
+
 
    </script>
 </head>
@@ -169,8 +285,41 @@ BB.act_menu=function(evt) {
 
  <div class="content">
   <div class="landscape">
-  
+   <div class="cards">
+      <div class="card card1">[?]
+      </div>
+      <div class="card card2">[?]
+      </div>
+      <div class="card card3">[?]
+      </div>
+      <div class="card card4">[?]
+      </div>
   </div>
+   <div class="pont">
+      <div class="piege piege1">1</div>
+      <div class="piege piege2">2</div>
+      <div class="piege piege3">3</div>
+      <div class="piege piege4">4</div>
+      <div class="piege piege5">5</div>
+      <div class="piege piege6">6</div>
+      <div class="piege piege7">7</div>
+      <div class="piege piege8">8</div>
+      <div class="piege piege9">9</div>
+      <div class="piege piege10">10</div>
+      <div class="piege piege11">11</div>
+      <div class="piege piege12">12</div>
+      <div class="piege piege13">13</div>
+      <div class="piege piege14">14</div>
+      <div class="piege piege15">15</div>
+      <div class="piege piege16">16</div>
+      <div class="piege piege17">17</div>
+      <div class="piege piege18">18</div>
+      <div class="piege piege19">19</div>
+      <div class="piege piege20">20</div>
+   </div>
+   <div class="croco"></div>
+   <div class="castor"></div>
+ </div>
 
 <div class="gridbox">
 <table class="grid"><tbody class="gridbody"></tbody></table>
