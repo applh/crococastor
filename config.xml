@@ -6,14 +6,14 @@
         id        = "com.applh.bubbleflag"
         version   = "1.0">
 
-    <name>Bubble Flag</name>
+    <name>CrocoCastor</name>
 
     <description>
-Bubble Flag is a 2 players game on World Flags.
+    Le Jeu de Tim Librez. Le Castor doit franchir le pont sans se faire manger par le Crocodile
     </description>
 
     <author href="http://applh.com" email="contact@applh.com">
-        Long Hai Le Huynh
+        Tim Librez / Long Hai Le Huynh
     </author>
 
     <!--
