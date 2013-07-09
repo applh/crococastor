@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CROCOCASTOR - par TIM LIBREZ</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+
+   <link rel="stylesheet" href="jquery-mobile-min.css">
+
+   <style type="text/css">
+.page {
+   margin:0 auto;
+   font-size:14px;
+   font-family:monospace;
+}
+.content > * {
+   margin:0 auto;
+}
+
+.gridbox table {
+   margin:0 auto;
+}
+
+table {
+   padding:8px;
+   border-spacing:4px;
+}
+table td {
+   width:80px;
+   height:50px;
+   border:2px #00ff00 solid;
+   border-radius: 10px;
+   text-align:right;
+   text-shadow:none;
+   z-index:1;
+   margin:5px;
+}
+td.sel {
+   background-color:#ffff00;
+}
+
+.header {
+   position:fixed;
+   top:0px;
+   padding:8px;
+   background-color:#ffffff;
+   text-align:center;
+   width:100%;
+   z-index:1;
+   font-size:2em;
+}
+.footer {
+   position:fixed;
+   bottom:0px;
+   padding:8px;
+   background-color:#ffffff;
+   text-align:center;
+   width:100%;
+   z-index:0;
+   font-size:.8em;
+}
+.footer > * {
+   float:left;
+   margin-right:16px;
+}
+
+.content {
+   padding:3em;
+   background-color:#222222;
+}
+
+.menu {
+   position:fixed;
+   top:8px;
+   right:8px;
+}
+
+.index {
+   border:2px #00aa00 solid;
+   border-radius: 20px;
+   height:20px;
+   width:20px;
+   padding:5px 5px;
+   font-size:.8em;
+   float:right;
+   background-color:#e0e0e0;
+}
+
+.landscape {
+   margin: 0 auto;
+   width:960px;
+   height:540px;
+   background: #dddddd url('plan-960.jpg') no-repeat center center scroll;
+}
+   </style>
+
+
+   <script src="jquery-min.js"></script>
+   <script src="jquery-mobile-min.js"></script>
+   <script src="cordova.js"></script>
+
+
+   <script>
+var BB={};
+
+BB.version="v0.2";
+
+BB.grid_cols=10;
+BB.grid_rows=10;
+
+BB.grid_cur=1;
+BB.grid_max=10;
+
+BB.td_curindex=0;
+
+BB.jinit=function(){
+
+   //var t=$("body").width()+'x'+$("body").height();
+   //var t=$(".page").width()+'x'+$(".page").height();
+
+   BB.grid_reset(BB.grid_cur, BB.grid_cur);
+
+   $(".footer").append('<div class="version">');
+   $(".version").html(BB.version);
+
+   $(".menu").tap(BB.act_menu);
+};
+
+$(BB.jinit);
+
+BB.grid_init=function() {
+};
+
+BB.grid_reset=function(c, r) {
+   BB.grid_cols=c;
+   BB.grid_rows=r;
+
+};
+
+
+BB.td_index=function(i) {
+};
+
+
+BB.act_td=function(evt) {
+};
+
+BB.act_index=function(evt) {
+   evt.preventDefault();
+   evt.stopPropagation();
+};
+
+BB.act_menu=function(evt) {
+};
+
+   </script>
+</head>
+<body>
+<div class="page" data-role="page">
+ <div class="header">
+ <div class="title">CROCOCASTOR</div>
+ <div class="menu">(o)</div>
+ </div>
+
+ <div class="footer">
+<div>&copy;2013 Applh.com</div>
+ </div>
+
+ <div class="content">
+  <div class="landscape">
+  
+  </div>
+
+<div class="gridbox">
+<table class="grid"><tbody class="gridbody"></tbody></table>
+  </div>
+ </div>
+</div>
+</body>
+</html>
